@@ -2,12 +2,10 @@ import express from "express";
 
 const app = express();
 
+app.set("trust proxy", true);
+
 app.get("/", (req, res) => {
-	const ip = (
-		req.ip ||
-		req.headers["x-forwarded-for"] ||
-		req.socket.remoteAddress
-	).split(":")[3];
+	const ip = req.headers["x-forwarded-for"] || req.ip;
 	res.json({ ip });
 });
 
