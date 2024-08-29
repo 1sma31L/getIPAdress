@@ -8,7 +8,7 @@ app.get("/", (req, res) => {
 		req.headers["x-forwarded-for"] ||
 		req.socket.remoteAddress
 	).split(":")[3];
-	res.send(`Your IP address is ${ip}`);
+	res.json({ ip });
 });
 
 app.listen(3000, () => {
